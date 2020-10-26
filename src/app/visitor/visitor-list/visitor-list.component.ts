@@ -46,8 +46,8 @@ export class VisitorListComponent implements AfterViewInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddVisitorDialogComponent, {
-      width: '250px',
-      data: { position: this.position, name: this.name, weight: 1.0079, symbol: 'H' }
+      width: '400px',
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
