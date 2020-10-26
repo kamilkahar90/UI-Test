@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Visitor</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>ID No</mat-label>
+        <input matInput [(ngModel)]="data.id_no">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Company</mat-label>
+        <input matInput [(ngModel)]="data.company">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Host</mat-label>
+        <input matInput [(ngModel)]="data.host">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Purpose</mat-label>
+        <input matInput [(ngModel)]="data.purpose">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
