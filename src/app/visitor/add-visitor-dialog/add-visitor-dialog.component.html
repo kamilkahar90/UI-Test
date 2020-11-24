@@ -2,27 +2,37 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="data.name">
+        <input matInput [(ngModel)]="data.name" #name="ngModel" required>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">You must enter a value
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>ID No</mat-label>
-        <input matInput [(ngModel)]="data.id_no">
+        <input type="number" matInput [(ngModel)]="data.id_no" #id_no="ngModel" required>        
+        <mat-error *ngIf="id_no.invalid && (id_no.dirty || id_no.touched) && id_no.errors.required">You must enter a value
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Company</mat-label>
-        <input matInput [(ngModel)]="data.company">
+        <input matInput [(ngModel)]="data.company" #company="ngModel" required>        
+        <mat-error *ngIf="company.invalid && (company.dirty || company.touched) && company.errors.required">You must enter a value
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Host</mat-label>
-        <input matInput [(ngModel)]="data.host">
+        <input matInput [(ngModel)]="data.host" #host="ngModel" required>        
+        <mat-error *ngIf="host.invalid && (host.dirty || host.touched) && host.errors.required">You must enter a value
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Purpose</mat-label>
-        <input matInput [(ngModel)]="data.purpose">
+        <input matInput [(ngModel)]="data.purpose" #purpose="ngModel" required>        
+        <mat-error *ngIf="purpose.invalid && (purpose.dirty || purpose.touched) && purpose.errors.required">You must enter a value
+        </mat-error>
     </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="name.invalid || id_no.invalid || company.invalid || host.invalid || purpose.invalid">Submit</button>
 </div>

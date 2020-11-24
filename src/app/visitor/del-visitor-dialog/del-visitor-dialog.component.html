@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Delete Visitor</h1>
+
+<mat-label>Are you sure want to delete?</mat-label>    
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="data" cdkFocusInitial>Delete</button>
+</div>

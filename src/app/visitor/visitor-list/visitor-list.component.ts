@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddVisitorDialogComponent } from '../add-visitor-dialog/add-visitor-dialog.component';
+import { DelVisitorDialogComponent } from '../del-visitor-dialog/del-visitor-dialog.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-visitor-list',
@@ -15,36 +17,49 @@ export class VisitorListComponent implements AfterViewInit {
   selection = new MatTableDataSource<PeriodicElement>([]);
   totalVisitor = this.dataSource.data.length;
 
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(filterValue) {
+    filterValue = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
 
   }
 
-  getRecord(name) {
-    alert(name);
+  deleteVisitor(index) {
+    const dialogRef = this.dialog.open(DelVisitorDialogComponent, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data.splice(index, 1);
+        this.dataSource = new MatTableDataSource<PeriodicElement>(Items);
+        this.dataSource.paginator = this.paginator;
+        this.totalVisitor = this.dataSource.data.length;
+
+        this._snackBar.open('Delete visitor successfully!!', null, {
+          duration: 1500,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      }
+    });
   }
 
-  addRecord() {
-    alert('name');
-  }
-  deleteEmp(index) {
-    this.dataSource.data.splice(index, 1);
-    this.dataSource = new MatTableDataSource<PeriodicElement>(Items);
-    this.dataSource.paginator = this.paginator;
-    this.totalVisitor = this.dataSource.data.length;
-  }
-
-  openDialog(): void {
+  addVisitor(): void {
     const dialogRef = this.dialog.open(AddVisitorDialogComponent, {
       width: '400px',
       data: {}
@@ -57,6 +72,11 @@ export class VisitorListComponent implements AfterViewInit {
         this.dataSource.data = data;
         this.totalVisitor = this.dataSource.data.length;
 
+        this._snackBar.open('Add visitor successfully!!', null, {
+          duration: 1500,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
       }
     });
   }

@@ -1,13 +1,13 @@
 
 <mat-toolbar>
   <mat-toolbar-row>
-    <span style="font-size: 20px; color: darkblue;">Visitor List</span>
+    <span style="font-size: 20px; color: darkblue;">Visitors List</span>
     <span class="example-spacer"></span>
     
     <mat-form-field style="font-size: 10px;" appearance="outline">
       <mat-icon matPrefix>search</mat-icon>
       <mat-label>Search</mat-label>
-      <input matInput type="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" type="search">
     </mat-form-field>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -15,7 +15,7 @@
   <mat-toolbar-row>
     <span>Total Visitor: {{ totalVisitor }}</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button (click)="openDialog()"><mat-icon>add_box</mat-icon></button>
+    <button mat-icon-button (click)="addVisitor()"><mat-icon>add_box</mat-icon></button>
     <span>Add Visitor</span>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -57,7 +57,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element; let i = index">
-          <button mat-icon-button color="warn" (click)="deleteEmp(i)"><mat-icon>delete</mat-icon></button></td>
+          <button mat-icon-button color="warn" (click)="deleteVisitor(i)"><mat-icon>delete</mat-icon></button></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

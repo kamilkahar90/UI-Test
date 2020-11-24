@@ -16,11 +16,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DelVisitorDialogComponent } from './visitor/del-visitor-dialog/del-visitor-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
     VisitorListComponent,
-    AddVisitorDialogComponent
+    AddVisitorDialogComponent,
+    DelVisitorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
-
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
