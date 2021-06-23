@@ -18,12 +18,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DelVisitorDialogComponent } from './visitor/del-visitor-dialog/del-visitor-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TicketListCardComponent } from './ticket/ticket-list-card/ticket-list-card.component';
 @NgModule({
   declarations: [
     AppComponent,
     VisitorListComponent,
     AddVisitorDialogComponent,
-    DelVisitorDialogComponent
+    DelVisitorDialogComponent,
+    TicketListCardComponent
   ],
   imports: [
     BrowserModule,
